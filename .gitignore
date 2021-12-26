@@ -1,3 +1,4 @@
 .suo
+*.DotSettings.user
 \bin
 \obj
