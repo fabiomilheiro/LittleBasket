@@ -11,7 +11,7 @@ public class Basket
 
     public void Add(Product product)
     {
-        var item = this.GetBasketItemByProduct(product);
+        var item = this.GetBasketItemByProductOrNull(product);
         if (item != null)
         {
             this.ReplaceBasketItem(item, new BasketItem(product, item.Quantity + 1));
@@ -24,7 +24,7 @@ public class Basket
 
     public void Subtract(Product product)
     {
-        var item = this.GetBasketItemByProduct(product);
+        var item = this.GetBasketItemByProductOrNull(product);
 
         if (item == null)
         {
@@ -43,7 +43,7 @@ public class Basket
 
     public void Remove(Product product)
     {
-        var item = this.GetBasketItemByProduct(product);
+        var item = this.GetBasketItemByProductOrNull(product);
 
         if (item == null)
         {
@@ -58,7 +58,12 @@ public class Basket
         return this.items.ToArray();
     }
 
-    private BasketItem? GetBasketItemByProduct(Product product)
+    public BasketItem GetBasketItemByProduct(Product product)
+    {
+        return this.GetBasketItemByProductOrNull(product)!;
+    }
+
+    private BasketItem? GetBasketItemByProductOrNull(Product product)
     {
         return this.items.SingleOrDefault(i => i.Product == product);
     }

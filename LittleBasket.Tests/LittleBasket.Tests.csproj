@@ -25,4 +25,8 @@
     <ProjectReference Include="..\LittleBasket\LittleBasket.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BasketItemDiscountRules\" />
+  </ItemGroup>
+
 </Project>
