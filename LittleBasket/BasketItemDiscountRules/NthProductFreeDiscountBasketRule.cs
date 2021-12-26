@@ -1,14 +1,14 @@
 ﻿namespace LittleBasket.BasketItemDiscountRules;
 
-public class FourthProductFreeDiscountBasketRule : IBasketItemDiscountRule
+public class NthProductFreeDiscountBasketRule : IBasketItemDiscountRule
 {
     private readonly Product product;
     private readonly int quantity;
 
-    public FourthProductFreeDiscountBasketRule(Product product)
+    public NthProductFreeDiscountBasketRule(Product product, int quantity)
     {
         this.product = product;
-        this.quantity = 4;
+        this.quantity = quantity;
     }
 
     public BasketResultItem? Apply(Basket basket, BasketItem basketItem)

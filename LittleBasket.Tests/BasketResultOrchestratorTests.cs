@@ -22,7 +22,7 @@ public class BasketResultOrchestratorTests
                 2,
                 Products.Bread,
                 .5m),
-            new FourthProductFreeDiscountBasketRule(Products.Milk)
+            new NthProductFreeDiscountBasketRule(Products.Milk, 4)
         };
         this.sut = new BasketResultOrchestrator();
     }
