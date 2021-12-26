@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleBasket", "LittleBasket\LittleBasket.csproj", "{3D330A64-8C16-4821-9B6B-FEF70A61DF04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleBasket.Tests", "LittleBasket.Tests\LittleBasket.Tests.csproj", "{C71AFC0A-3D8D-4E09-AEF8-A935D08AC75A}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D330A64-8C16-4821-9B6B-FEF70A61DF04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D330A64-8C16-4821-9B6B-FEF70A61DF04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D330A64-8C16-4821-9B6B-FEF70A61DF04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D330A64-8C16-4821-9B6B-FEF70A61DF04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C71AFC0A-3D8D-4E09-AEF8-A935D08AC75A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C71AFC0A-3D8D-4E09-AEF8-A935D08AC75A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C71AFC0A-3D8D-4E09-AEF8-A935D08AC75A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C71AFC0A-3D8D-4E09-AEF8-A935D08AC75A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
