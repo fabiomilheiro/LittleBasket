@@ -6,21 +6,60 @@ public class BasketResultOrchestrator
 {
     public BasketResult Execute(Basket basket, IEnumerable<IBasketItemDiscountRule> basketItemDiscountRules)
     {
-        //foreach (var basketItem in basket.GetItems())
-        //{
-              //var itemResults = new List<BasketResultItem>();
-        //    foreach (var basketItemDiscountRule in basketItemDiscountRules)
-        //    {
-        //        var itemResult = basketItemDiscountRule.Apply(basket, basketItem);
+        var basketResultItems = GetBasketResultItems(basket, basketItemDiscountRules);
 
-        //        if (itemResult != null)
-        //        {
-        //            itemResults.Add(itemResult);
-        //        }
-        //    }
-        //}
+        return new BasketResult(basketResultItems.Sum(i => i.FinalPrice));
+    }
 
-        //return new BasketResult(itemResults);
-        throw new NotImplementedException();
+    private static IEnumerable<BasketResultItem> GetBasketResultItems(
+        Basket basket,
+        IEnumerable<IBasketItemDiscountRule> basketItemDiscountRules)
+    {
+        var basketItemDiscountRulesArray = basketItemDiscountRules.ToArray();
+
+        foreach (var basketItem in basket.GetItems())
+        {
+            var basketResultItems =
+                GetBasketItemPossibleDiscountResults(basket, basketItemDiscountRulesArray, basketItem)
+                    .ToArray();
+
+            if (basketResultItems.Any())
+            {
+                yield return GetCheapestBasketDiscountResult(basketResultItems);
+            }
+            else
+            {
+                yield return CreateBasketResultItemWithoutDiscount(basketItem);
+            }
+        }
+    }
+
+    private static BasketResultItem CreateBasketResultItemWithoutDiscount(BasketItem basketItem)
+    {
+        return new BasketResultItem(
+            basketItem.Product,
+            basketItem.Quantity,
+            basketItem.Product.Price * basketItem.Quantity);
+    }
+
+    private static BasketResultItem GetCheapestBasketDiscountResult(BasketResultItem[] basketResultItems)
+    {
+        return basketResultItems.OrderByDescending(i => i.FinalPrice).First();
+    }
+
+    private static IEnumerable<BasketResultItem> GetBasketItemPossibleDiscountResults(
+        Basket basket,
+        IBasketItemDiscountRule[] basketItemDiscountRulesArray,
+        BasketItem basketItem)
+    {
+        foreach (var basketItemDiscountRule in basketItemDiscountRulesArray)
+        {
+            var basketResultItem = basketItemDiscountRule.Apply(basket, basketItem);
+
+            if (basketResultItem != null)
+            {
+                yield return basketResultItem;
+            }
+        }
     }
 }
