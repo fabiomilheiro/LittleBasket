@@ -11,21 +11,61 @@ public class Basket
 
     public void Add(Product product)
     {
-        throw new NotImplementedException();
+        var item = this.GetBasketItemByProduct(product);
+        if (item != null)
+        {
+            this.ReplaceBasketItem(item, new BasketItem(product, item.Quantity + 1));
+        }
+        else
+        {
+            this.items.Add(new BasketItem(product, 1));
+        }
     }
 
     public void Subtract(Product product)
     {
-        throw new NotImplementedException();
+        var item = this.GetBasketItemByProduct(product);
+
+        if (item == null)
+        {
+            return;
+        }
+
+        if (item.Quantity > 1)
+        {
+            this.ReplaceBasketItem(item, new BasketItem(product, item.Quantity - 1));
+        }
+        else
+        {
+            this.items.Remove(item);
+        }
     }
 
     public void Remove(Product product)
     {
-        throw new NotImplementedException();
+        var item = this.GetBasketItemByProduct(product);
+
+        if (item == null)
+        {
+            return;
+        }
+
+        this.items.Remove(item);
     }
 
     public IEnumerable<BasketItem> GetItems()
     {
-        throw new NotImplementedException();
+        return this.items.ToArray();
+    }
+
+    private BasketItem? GetBasketItemByProduct(Product product)
+    {
+        return this.items.SingleOrDefault(i => i.Product == product);
+    }
+
+    private void ReplaceBasketItem(BasketItem oldItem, BasketItem newItem)
+    {
+        var index = this.items.IndexOf(oldItem);
+        this.items[index] = newItem;
     }
 }
