@@ -5,15 +5,15 @@ using Xunit;
 
 namespace LittleBasket.Tests.BasketItemDiscountRules;
 
-public class NthProductFreeDiscountBasketRuleTests
+public class NthProductFreeBasketItemDiscountRuleTests
 {
     private readonly Basket basket;
-    private readonly NthProductFreeDiscountBasketRule sut;
+    private readonly NthProductFreeBasketItemDiscountRule sut;
 
-    public NthProductFreeDiscountBasketRuleTests()
+    public NthProductFreeBasketItemDiscountRuleTests()
     {
         this.basket = new Basket();
-        this.sut = new NthProductFreeDiscountBasketRule(Products.Milk, 4);
+        this.sut = new NthProductFreeBasketItemDiscountRule(Products.Milk, 4);
     }
 
     [Fact]

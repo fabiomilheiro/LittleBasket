@@ -16,12 +16,12 @@ public class BasketResultOrchestratorTests
         this.basket = new Basket();
         this.basketItemDiscountRules = new List<IBasketItemDiscountRule>
         {
-            new ProductQuantityDiscountBasketRule(
+            new ProductQuantityBasketItemDiscountRule(
                 Products.Butter,
                 2,
                 Products.Bread,
                 .5m),
-            new NthProductFreeDiscountBasketRule(Products.Milk, 4),
+            new NthProductFreeBasketItemDiscountRule(Products.Milk, 4),
             // Could have used the `ProductQuantityDiscountBasketRule` rule to make the 4th milk free
             // but left the redundant rule in place because I suspect one of the test objectives was
             // to have a set of rules implementing the same abstraction. Eager to discuss 👍

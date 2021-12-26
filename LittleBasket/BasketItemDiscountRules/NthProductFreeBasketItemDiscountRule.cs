@@ -1,11 +1,11 @@
 ﻿namespace LittleBasket.BasketItemDiscountRules;
 
-public class NthProductFreeDiscountBasketRule : IBasketItemDiscountRule
+public class NthProductFreeBasketItemDiscountRule : IBasketItemDiscountRule
 {
     private readonly Product product;
     private readonly int quantity;
 
-    public NthProductFreeDiscountBasketRule(Product product, int quantity)
+    public NthProductFreeBasketItemDiscountRule(Product product, int quantity)
     {
         this.product = product;
         this.quantity = quantity;

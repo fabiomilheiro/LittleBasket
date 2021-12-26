@@ -5,11 +5,11 @@ using Xunit;
 
 namespace LittleBasket.Tests.BasketItemDiscountRules;
 
-public class ProductQuantityDiscountBasketRuleTests
+public class ProductQuantityBasketItemDiscountRuleTests
 {
     private readonly Basket basket;
 
-    public ProductQuantityDiscountBasketRuleTests()
+    public ProductQuantityBasketItemDiscountRuleTests()
     {
         this.basket = new Basket();
     }
@@ -20,7 +20,7 @@ public class ProductQuantityDiscountBasketRuleTests
         this.basket.Add(Products.Bread);
         var basketItemToDiscount = this.basket.GetItems().Last();
 
-        var sut = new ProductQuantityDiscountBasketRule(
+        var sut = new ProductQuantityBasketItemDiscountRule(
             new Product("A", "Product not in basket", 1),
             2,
             basketItemToDiscount.Product,
@@ -39,7 +39,7 @@ public class ProductQuantityDiscountBasketRuleTests
         this.basket.Add(Products.Milk);
         var basketItemToDiscount = this.basket.GetBasketItemByProduct(Products.Bread);
 
-        var sut = new ProductQuantityDiscountBasketRule(
+        var sut = new ProductQuantityBasketItemDiscountRule(
             Products.Bread,
             2,
             Products.Milk,
@@ -57,7 +57,7 @@ public class ProductQuantityDiscountBasketRuleTests
         this.basket.Add(Products.Bread);
         var basketItemToDiscount = this.basket.GetItems().Last();
 
-        var sut = new ProductQuantityDiscountBasketRule(
+        var sut = new ProductQuantityBasketItemDiscountRule(
             Products.Butter,
             2,
             basketItemToDiscount.Product,
@@ -77,7 +77,7 @@ public class ProductQuantityDiscountBasketRuleTests
         var basketItemToDiscount = this.basket.GetItems().Last();
         var productToDiscount = basketItemToDiscount.Product;
 
-        var sut = new ProductQuantityDiscountBasketRule(
+        var sut = new ProductQuantityBasketItemDiscountRule(
             Products.Butter,
             2,
             productToDiscount,
@@ -102,7 +102,7 @@ public class ProductQuantityDiscountBasketRuleTests
         var basketItemToDiscount = this.basket.GetItems().Last();
         var productToDiscount = basketItemToDiscount.Product;
 
-        var sut = new ProductQuantityDiscountBasketRule(
+        var sut = new ProductQuantityBasketItemDiscountRule(
             Products.Butter,
             2,
             productToDiscount,
@@ -130,7 +130,7 @@ public class ProductQuantityDiscountBasketRuleTests
         var basketItemToDiscount = this.basket.GetItems().Last();
         var productToDiscount = basketItemToDiscount.Product;
 
-        var sut = new ProductQuantityDiscountBasketRule(
+        var sut = new ProductQuantityBasketItemDiscountRule(
             Products.Butter,
             2,
             productToDiscount,
