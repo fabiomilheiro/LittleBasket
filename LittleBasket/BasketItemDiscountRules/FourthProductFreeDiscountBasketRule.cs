@@ -3,10 +3,12 @@
 public class FourthProductFreeDiscountBasketRule : IBasketItemDiscountRule
 {
     private readonly Product product;
+    private readonly int quantity;
 
     public FourthProductFreeDiscountBasketRule(Product product)
     {
         this.product = product;
+        this.quantity = 4;
     }
 
     public BasketResultItem? Apply(Basket basket, BasketItem basketItem)
@@ -16,7 +18,7 @@ public class FourthProductFreeDiscountBasketRule : IBasketItemDiscountRule
             return null;
         }
 
-        if (basketItem.Quantity < 4)
+        if (basketItem.Quantity < this.quantity)
         {
             return null;
         }
@@ -24,15 +26,14 @@ public class FourthProductFreeDiscountBasketRule : IBasketItemDiscountRule
         return new BasketResultItem(
             basketItem.Product,
             basketItem.Quantity,
-            CalculateFinalPrice(basketItem));
+            this.CalculateFinalPrice(basketItem));
     }
 
-    private static decimal CalculateFinalPrice(BasketItem basketItem)
+    private decimal CalculateFinalPrice(BasketItem basketItem)
     {
-        var (product, quantity) = basketItem;
-        var numberOfUnitsToDiscount = quantity / 4;
-        var numberOfUnitsNotToDiscount = quantity - numberOfUnitsToDiscount;
+        var numberOfUnitsToDiscount = basketItem.Quantity / this.quantity;
+        var numberOfUnitsNotToDiscount = basketItem.Quantity - numberOfUnitsToDiscount;
 
-        return product.Price * numberOfUnitsNotToDiscount;
+        return basketItem.Product.Price * numberOfUnitsNotToDiscount;
     }
 }
