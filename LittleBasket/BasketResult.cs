@@ -2,4 +2,4 @@
 
 namespace LittleBasket;
 
-public record BasketResult(IEnumerable<BasketResultItem> Items);
+public record BasketResult(decimal Total);
