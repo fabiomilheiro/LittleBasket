@@ -69,7 +69,7 @@ public class ProductQuantityDiscountBasketRuleTests
     }
 
     [Fact]
-    public void Apply_RequirementsMet_AppliesDiscount()
+    public void Apply_RequirementsMetForSingleQuantity_AppliesDiscount()
     {
         this.basket.Add(Products.Butter);
         this.basket.Add(Products.Butter);

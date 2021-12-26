@@ -63,7 +63,7 @@ public class Basket
         return this.GetBasketItemByProductOrNull(product)!;
     }
 
-    private BasketItem? GetBasketItemByProductOrNull(Product product)
+    public BasketItem? GetBasketItemByProductOrNull(Product product)
     {
         return this.items.SingleOrDefault(i => i.Product == product);
     }

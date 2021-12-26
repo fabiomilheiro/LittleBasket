@@ -2,25 +2,59 @@
 
 public class ProductQuantityDiscountBasketRule : IBasketItemDiscountRule
 {
+    private readonly Product productToTrigger;
+    private readonly int quantity;
+    private readonly Product productToDiscount;
+    private readonly decimal discountPercentage;
+
     public ProductQuantityDiscountBasketRule(
         Product productToTrigger,
         int quantity,
         Product productToDiscount,
-        decimal discount)
+        decimal discountPercentage)
     {
-        this.ProductToTrigger = productToTrigger;
-        this.Quantity = quantity;
-        this.ProductToDiscount = productToDiscount;
-        this.Discount = discount;
+        this.productToTrigger = productToTrigger;
+        this.quantity = quantity;
+        this.productToDiscount = productToDiscount;
+        this.discountPercentage = discountPercentage;
     }
-
-    public Product ProductToTrigger { get; }
-    public int Quantity { get; }
-    public Product ProductToDiscount { get; }
-    public decimal Discount { get; }
 
     public BasketResultItem? Apply(Basket basket, BasketItem basketItem)
     {
-        throw new NotImplementedException();
+        var productToTriggerBasketItem = basket.GetBasketItemByProductOrNull(this.productToTrigger);
+
+        if (productToTriggerBasketItem == null)
+        {
+            return null;
+        }
+
+        var productToDiscountBasketItem = basket.GetBasketItemByProductOrNull(this.productToDiscount);
+
+        if (productToDiscountBasketItem?.Product != basketItem.Product)
+        {
+            return null;
+        }
+
+        if (productToTriggerBasketItem.Quantity < this.quantity)
+        {
+            return null;
+        }
+
+        return new BasketResultItem(
+            this.productToDiscount,
+            basketItem.Quantity,
+            this.CalculateFinalPrice(productToTriggerBasketItem, productToDiscountBasketItem));
+    }
+
+    private decimal CalculateFinalPrice(BasketItem productToTriggerBasketItem, BasketItem productToDiscountBasketItem)
+    {
+        var numberOfUnitsToDiscount = productToTriggerBasketItem.Quantity / this.quantity;
+        var numberOfUnitsNotToDiscount = productToDiscountBasketItem.Quantity - numberOfUnitsToDiscount;
+        
+        var finalPrice =
+            numberOfUnitsToDiscount * this.productToDiscount.Price * (1 - this.discountPercentage)
+            + numberOfUnitsNotToDiscount * this.productToDiscount.Price;
+       
+        return finalPrice;
     }
 }
