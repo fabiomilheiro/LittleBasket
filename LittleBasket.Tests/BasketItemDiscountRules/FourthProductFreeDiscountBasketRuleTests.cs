@@ -5,15 +5,15 @@ using Xunit;
 
 namespace LittleBasket.Tests.BasketItemDiscountRules;
 
-public class FourthMilkFreeDiscountBasketRuleTests
+public class FourthProductFreeDiscountBasketRuleTests
 {
     private readonly Basket basket;
-    private readonly FourthMilkFreeDiscountBasketRule sut;
+    private readonly FourthProductFreeDiscountBasketRule sut;
 
-    public FourthMilkFreeDiscountBasketRuleTests()
+    public FourthProductFreeDiscountBasketRuleTests()
     {
         this.basket = new Basket();
-        this.sut = new FourthMilkFreeDiscountBasketRule();
+        this.sut = new FourthProductFreeDiscountBasketRule(Products.Milk);
     }
 
     [Fact]
@@ -27,7 +27,7 @@ public class FourthMilkFreeDiscountBasketRuleTests
 
         result.Should().BeNull();
     }
-
+    
     [Fact]
     public void Apply_LessThanFourMilks_ReturnsNull()
     {
