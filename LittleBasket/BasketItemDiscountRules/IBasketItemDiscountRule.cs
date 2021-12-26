@@ -2,5 +2,5 @@
 
 public interface IBasketItemDiscountRule
 {
-    BasketResultItem Apply(Basket basket, BasketItem basketItem);
+    BasketResultItem? Apply(Basket basket, BasketItem basketItem);
 }

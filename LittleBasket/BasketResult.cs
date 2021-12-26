@@ -1,3 +1,5 @@
-﻿namespace LittleBasket;
+﻿using LittleBasket.BasketItemDiscountRules;
 
-public record BasketResult();
+namespace LittleBasket;
+
+public record BasketResult(IEnumerable<BasketResultItem> Items);
