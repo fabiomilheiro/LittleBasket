@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FluentAssertions;
 using LittleBasket.BasketItemDiscountRules;
 using Xunit;
@@ -22,7 +21,15 @@ public class BasketResultOrchestratorTests
                 2,
                 Products.Bread,
                 .5m),
-            new NthProductFreeDiscountBasketRule(Products.Milk, 4)
+            new NthProductFreeDiscountBasketRule(Products.Milk, 4),
+            // Could have used the `ProductQuantityDiscountBasketRule` rule to make the 4th milk free
+            // but left the redundant rule in place because I suspect one of the test objectives was
+            // to have a set of rules implementing the same abstraction. Eager to discuss 👍
+            //new ProductQuantityDiscountBasketRule(
+            //    Products.Milk,
+            //    3,
+            //    Products.Milk,
+            //    1)
         };
         this.sut = new BasketResultOrchestrator();
     }

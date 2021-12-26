@@ -1,13 +1,13 @@
 ﻿namespace LittleBasket.BasketItemDiscountRules;
 
-public class ProductQuantityDiscountBasketRule : IBasketItemDiscountRule
+public class ProductQuantityBasketItemDiscountRule : IBasketItemDiscountRule
 {
     private readonly Product productToTrigger;
     private readonly int quantity;
     private readonly Product productToDiscount;
     private readonly decimal discountPercentage;
 
-    public ProductQuantityDiscountBasketRule(
+    public ProductQuantityBasketItemDiscountRule(
         Product productToTrigger,
         int quantity,
         Product productToDiscount,
