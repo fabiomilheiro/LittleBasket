@@ -7,7 +7,7 @@
 
 ## Decisions
 
-1. I chose to have basket data flowing one way (Basket ➡ BasketResult) because it simplifies the problem e.g. in the 2 x butter resulting in a 50% bread discount, we don't have to undo anything - just re-calculating the basket result.
+1. I chose to have basket data flowing one way (Basket ➡ BasketResult) because it simplifies the problem e.g. in the 2 x butter resulting in a 50% bread discount, we don't have to undo anything if one butter is remove - just re-calculating the basket result.
 2. I purposefully called the the discount rules a mouthful because those rules are applied specifically to basket items which does not fit all types of basket rules possible we can apply on a basket e.g. adding free products and coupons to give discounts on the final price.
 3. The orchestrator can apply these rules and potentially others.
 4. I kept the BasketResult with only a single property (Total) because nothing else was asked.
